@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial 2</title>
+</head>
+<body>
+    <h1>Julimarketing</h1>
+    <div>
+        <p id="">Pregunta actual</p>
+        //Aqui poner las cosas que son necesarias.
+    </div>
+
+    <div>
+        <p id="">Escriba aquí la pregunta actual del focus group</p>
+        <div>
+            <input type="text" placeholder="Pregunta nueva" class="preguntaId">
+            <Button id="okBtn">OK</Button>
+        </div>
+    </div>
+
+    <div>
+        <p id="">Histórico</p>
+    </div>
+</body>
+</html>
+
+<script src="js/index.js"></script>
+
+<!--firebase-->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyBDGExADj6KH_TUvO4S9zGR_dkI23X72dc",
+    authDomain: "parcial-ii-483d0.firebaseapp.com",
+    databaseURL: "https://parcial-ii-483d0.firebaseio.com",
+    projectId: "parcial-ii-483d0",
+    storageBucket: "parcial-ii-483d0.appspot.com",
+    messagingSenderId: "117604104863",
+    appId: "1:117604104863:web:97943ce5ec4e2b92cb40aa",
+    measurementId: "G-TTDZ3SX2TE"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
