@@ -1,0 +1,47 @@
+h1,
+h3{
+    text-align:center;
+}
+.a{
+    display: absolute;
+    padding-left: 10px;
+    justify-content:center;
+    margin: 0 50 0 50;
+}
+
+#focusGroupId{
+    display: flex;
+    justify-content:center;
+    text-align: center;
+}
+
+.letrasPregunta{
+    font-size: 20px;
+    color: blue;
+}
+
+.letrasPuntajes{
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+#asdfsdaf{
+    text-align: center;
+    font-size: 10px;
+}
+
+#todoEscriba{
+    
+    display: flex;
+    justify-content:center;
+}
+
+.componentIdHistorico {
+    display: flex;
+    justify-content:center;
+}
+
+.bClass{
+    margin-left: 10px;
+    margin-right: 10px;
+}

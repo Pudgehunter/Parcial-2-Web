@@ -8,28 +8,71 @@ const focusGroupHistorico = document.getElementById('focusGroupHistorico');
 
 
 const register = ()=>{
-    //El primer pregunta que sale inicialmente.
-    let referencia = database.ref('Preguntas/id');
-
-    //Referencia historico.
-    let refHistorico = database.ref('Historicos').push();
-    let historicoInfo = {
-        preguntaHistorico: info.pregunta,
-        listaPromedioHistorico: info.listaPromedio
+    //para que no salga vacio
+    if (preguntaText.value == '') {
+        alert("No has escrito la pregunta");
+        return;
     }
-    refHistorico.set(historicoInfo);
 
+
+    //Referencia historico. Lo pongo antes para que no se actualice o me ponga el 0 del predeterminado.
+
+    /*database.ref('PreguntasActualizado').once('value', function (data) {
+        data.forEach(
+            preguntaFocusGroup => {
+                let preguntaLectura = preguntaFocusGroup.val().pregunta;
+                let listaPromedioLectura = preguntaFocusGroup.val().promedio;
+                let referenciaHistorico = database.ref('StandBy').push();
+                let infoHistorico = {
+                    id: referenciaHistorico.key,
+                    preguntaHistorico: preguntaLectura,
+                    listaPromedioHistorico: listaPromedioLectura,
+                };
+                referenciaHistorico.set(infoHistorico);
+                console.log(preguntaLectura);
+
+                //database.ref('PreguntasActualizado/'+preguntaFocusGroup.val().id).set(null);
+                database.ref('PreguntasActualizado').set(null);
+            }
+        )
+    });*/
+    
+    //Un localStorage arriba para que no se me pinte de una vez... (Ojala funcione) y no funciono.
+    //database.ref('StandBy').once('value', function (data) {// toca borrar estos y cambiarlos de nuevo...
+    database.ref('PreguntasActualizado').once('value', function (data) {
+        data.forEach(
+            preguntaFocusGroup => {
+                let preguntaLectura = preguntaFocusGroup.val().pregunta;
+                let listaPromedioLectura = preguntaFocusGroup.val().promedio;
+                let referenciaHistorico = database.ref('Historicos/'+preguntaFocusGroup.val().id);
+                let infoHistorico = {
+                    id: preguntaFocusGroup.val().id,
+                    preguntaHistorico: preguntaLectura,
+                    listaPromedioHistorico: listaPromedioLectura,
+                };
+                referenciaHistorico.set(infoHistorico);
+                console.log(preguntaLectura);
+
+                database.ref('PreguntasActualizado/'+preguntaFocusGroup.val().id).set(null);
+            }
+        )
+    });
+
+
+     //El primer pregunta que sale inicialmente.
+    let referencia = database.ref('Preguntas/id');
     let info = {
         pregunta: preguntaText.value,
-        listaPromedio: "0",
-        puntaje: "0",
+        listaPromedio: "10",
+        puntaje: "10",
+        promedio: "10",
     };
     referencia.set(info);
 
     preguntaText.value=''; //Sirve para limpiar el input TextView
 
-
     
+
 }
 
 okBtn.addEventListener('click', register);
@@ -44,6 +87,7 @@ database.ref('Preguntas').on('value',function(data){
     data.forEach(
         preguntaFocusGroup => {
             let valor = preguntaFocusGroup.val();
+            console.log(valor);
             let preguntasNuevo = new Pregunta(valor);
             focusGroupId.appendChild(preguntasNuevo.render());
         }
