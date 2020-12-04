@@ -6,7 +6,16 @@ class Historicos{
 
     render = ()=>{
         let component = document.createElement('div');
-        component.innerHTML = this.preguntasHistoricosFocusGroup.preguntaHistorico;
+
+        let a = document.createElement('div');
+        a.innerHTML = this.preguntasHistoricosFocusGroup.preguntaHistorico;
+
+        let b = document.createElement('div');
+        b.innerHTML = this.preguntasHistoricosFocusGroup.listaPromedio;
+
+        component.appendChild(a);
+        component.appendChild(b);
+
         return component;
     }
 

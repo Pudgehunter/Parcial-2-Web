@@ -10,20 +10,26 @@ const focusGroupHistorico = document.getElementById('focusGroupHistorico');
 const register = ()=>{
     //El primer pregunta que sale inicialmente.
     let referencia = database.ref('Preguntas/id');
+
+    //Referencia historico.
+    let refHistorico = database.ref('Historicos').push();
+    let historicoInfo = {
+        preguntaHistorico: info.pregunta,
+        listaPromedioHistorico: info.listaPromedio
+    }
+    refHistorico.set(historicoInfo);
+
     let info = {
         pregunta: preguntaText.value,
+        listaPromedio: "0",
+        puntaje: "0",
     };
     referencia.set(info);
 
     preguntaText.value=''; //Sirve para limpiar el input TextView
 
 
-    //Referencia historico.
-    let refHistorico = database.ref('Historicos').push();
-    let historicoInfo = {
-        preguntaHistorico: info.pregunta,
-    }
-    refHistorico.set(historicoInfo);
+    
 }
 
 okBtn.addEventListener('click', register);
@@ -42,7 +48,9 @@ database.ref('Preguntas').on('value',function(data){
             focusGroupId.appendChild(preguntasNuevo.render());
         }
     );
+
 });
+
 
 //Lectura de Historicos
 database.ref('Historicos').on('value',function(data){
